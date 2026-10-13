@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+.env
+*.log
+.DS_Store
+# 考卷与需求原件，仅本地参考，不属于交付物
+文档/
