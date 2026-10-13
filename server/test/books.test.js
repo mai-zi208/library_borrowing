@@ -234,14 +234,23 @@ describe('PUT /api/books/:id', () => {
     expect(saved.lastUpdatetime).not.toBeNull();
   });
 
-  test('请求未携带出版日期时沿用原值', async () => {
-    const row = await fetchByCode('BK000007');
-    const payload = buildPayload({ bookCode: 'BK000007', bookName: '第七本书改' });
+  test('请求未携带出版日期时沿用原值，不受提交的入库时间影响', async () => {
+    // BK000012 的出版日期 2001-05-06 与入库日期 2014-12-12 不同，
+    // 若实现错成"按入库时间兜底"，本用例能立刻区分出来
+    const row = await fetchByCode('BK000012');
+    const payload = buildPayload({
+      bookCode: 'BK000012',
+      bookName: '第十二本书改',
+      creationTime: '1999-01-01 00:00:00',
+    });
     delete payload.publishDate;
 
     const res = await request(app).put(`/api/books/${row.bookId}`).send(payload);
     expect(res.body.success).toBe(true);
-    expect((await fetchByCode('BK000007')).publishDate).toBe('2014-07-07');
+
+    const saved = await fetchByCode('BK000012');
+    expect(saved.publishDate).toBe('2001-05-06');
+    expect(String(saved.creationTime)).toBe('2014-12-12 08:00:00');
   });
 
   test('记录不存在时返回失败', async () => {

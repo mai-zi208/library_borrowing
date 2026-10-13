@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>修改图书信息</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1>图书借阅系统<span>后台管理</span></h1>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h2 class="card-title">修改图书信息</h2>
+
+      <form id="bookForm" autocomplete="off" novalidate>
+        <div class="form-grid">
+          <div class="field" data-field="bookCode">
+            <label for="bookCode">图书编号<span class="req">*</span></label>
+            <input type="text" id="bookCode" maxlength="20">
+            <p class="err">图书编号不能为空</p>
+          </div>
+          <div class="field" data-field="bookName">
+            <label for="bookName">图书名称<span class="req">*</span></label>
+            <input type="text" id="bookName" maxlength="100">
+            <p class="err">图书名称不能为空</p>
+          </div>
+          <div class="field" data-field="bookType">
+            <label for="bookType">图书类型<span class="req">*</span></label>
+            <select id="bookType">
+              <option value="">——请选择——</option>
+            </select>
+            <p class="err">请选择图书类型</p>
+          </div>
+          <div class="field" data-field="bookAuthor">
+            <label for="bookAuthor">作者</label>
+            <input type="text" id="bookAuthor" maxlength="50">
+          </div>
+          <div class="field" data-field="publishPress">
+            <label for="publishPress">出版社</label>
+            <input type="text" id="publishPress" maxlength="50">
+          </div>
+          <div class="field" data-field="borrowed">
+            <label for="borrowed">是否借阅<span class="req">*</span></label>
+            <select id="borrowed">
+              <option value="0">未借阅</option>
+              <option value="1">已借阅</option>
+            </select>
+            <p class="err">请选择借阅状态</p>
+          </div>
+          <!-- 考卷要求本页的入库人与入库时间为只读状态，不可修改 -->
+          <div class="field" data-field="createdBy">
+            <label for="createdBy">入库人<span class="req">*</span></label>
+            <input type="text" id="createdBy" readonly>
+            <p class="err">入库人不能为空</p>
+          </div>
+          <div class="field" data-field="creationTime">
+            <label for="creationTime">入库时间<span class="req">*</span></label>
+            <input type="text" id="creationTime" readonly>
+            <p class="err">入库时间不能为空</p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="saveBtn">修改</button>
+          <button type="button" class="btn" id="backBtn">返回</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="vendor/jquery.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/edit.js"></script>
+</body>
+</html>
