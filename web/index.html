@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图书借阅系统·后台管理</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1>图书借阅系统<span>后台管理</span></h1>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <div class="toolbar">
+        <div class="search">
+          <label for="keyword">图书名称</label>
+          <input type="text" id="keyword" placeholder="支持模糊查询">
+          <button type="button" class="btn" id="searchBtn">查询</button>
+        </div>
+        <button type="button" class="btn btn-primary" id="addBtn">新增图书</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="grid">
+          <thead>
+            <tr>
+              <th>图书编号</th>
+              <th>图书分类</th>
+              <th>图书名称</th>
+              <th>作者</th>
+              <th>出版社</th>
+              <th>入库时间</th>
+              <th>是否借阅</th>
+              <th class="col-op">操作</th>
+            </tr>
+          </thead>
+          <tbody id="bookTable"></tbody>
+        </table>
+        <p class="empty" id="emptyTip" hidden>没有符合条件的图书</p>
+      </div>
+
+      <nav class="pager" id="pager"></nav>
+    </section>
+  </main>
+
+  <script src="vendor/jquery.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
